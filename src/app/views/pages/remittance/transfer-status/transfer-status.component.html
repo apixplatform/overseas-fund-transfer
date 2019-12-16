@@ -1,0 +1,85 @@
+<div class="mt-5 mb-5 d-flex justify-content-center w-100">
+	<div class="col-md-12">
+		<h1 class="c-white">Overseas Money Transfer</h1>
+		<!-- <p class="c-white">Same-day transfers at $0 fees when you transfer money online using Maybank</p> -->
+		<div class="button-row">
+			<a mat-raised-button [routerLink]="['/dashboard']" color="primary">HOME</a>
+		</div>
+	</div>
+</div>
+
+<div class="container clear-top text-dark">
+	<div class="kt-grid kt-wizard-v1 kt-wizard-v1--white">
+		<div class="kt-grid__item">
+			<!--begin: Form Wizard Nav -->
+			<div class="kt-wizard-v1__nav">
+				<div class="kt-wizard-v1__nav-items">
+					<a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-user"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Beneficiary<br>Details
+							</div>
+						</div>
+					</a>
+					<a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-file-invoice-dollar"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Remitter<br>Details
+							</div>
+						</div>
+					</a>
+					<a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step" data-ktwizard-state="current">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-calendar-check"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Transfer<br>Status
+							</div>
+						</div>
+					</a>
+
+				</div>
+			</div>
+			<!--end: Form Wizard Nav -->
+		</div>
+	</div>
+	<div class="row">
+		<div class="col mt-5 px-extra">
+			<h2 class="font-weight-bold">Transfer Status</h2>
+			<h5>Overseas money transfer initiated. Details are as below.</h5>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col mt-5 px-extra">
+			<div>
+				<h5 class="pb-2">Overseas Transfer Details</h5><br>
+
+				<div class="pb-1"><strong>Transfer Type: </strong><span class="account-Info" >{{ transactionDetails.trantype === 'quick' ? 'QUICK TRANSFER' : 'STANDARD TRANSFER' }}</span></div> <br />
+				<div class="pb-1"><strong>Status: </strong><span class="account-Info" >{{ transactionDetails.trantype === 'quick' ? 'COMPLETED' : 'INITIATED' }}</span></div> <br />
+				<div class="pb-1"><strong>Reference ID: </strong><span class="account-Info">{{ remittanceDetails?.tranrefno }}</span></div> <br />
+				<div class="pb-1"><strong>Amount sent by Remitter: </strong><span class="account-Info">{{ remittanceDetails?.tranamount }} {{ transactionDetails?.fromcurr }}</span></div> <br />
+				<div class="pb-1"><strong>Amount due to Beneficiary: </strong><span class="account-Info">{{ transactionDetails?.destamount }} {{ transactionDetails?.tocurr }}</span></div> <br /><br />
+
+				<div class="pb-1">You can track the progress of the transfer from the&nbsp;<strong>dashboard</strong></div>.<br />
+
+				<div class="row">
+					<div class="col-md-6">
+						<button mat-raised-button (click)="gotoDashboard()" color="primary">Back to Dashboard</button>
+					</div>
+					<div class="col-md-6 powered-by">
+						<small>Powered by: </small>
+						<img src="./assets/media/company-logos/remit-online.png" class="pl-2 logo">
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

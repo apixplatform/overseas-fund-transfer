@@ -1,0 +1,12 @@
+<div class="kt-widget14">
+	<div class="kt-widget14__header kt-margin-b-30">
+		<h3 class="kt-widget14__title">{{title}}</h3>
+		<span class="kt-widget14__desc">{{desc}}</span>
+	</div>
+	<div class="kt-widget14__chart" style="height:250px;">
+		<div class="d-flex justify-content-center pt-5" *ngIf="!(chartRef && chartRef.data && chartRef.data.datasets)">
+			<mat-spinner [diameter]="100"></mat-spinner>
+		</div>
+		<canvas #chart></canvas>
+	</div>
+</div>

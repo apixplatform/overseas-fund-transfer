@@ -1,0 +1,69 @@
+{
+    "apix": {
+        "credentials": {
+            "userName": "Please replace this with your APIX username",
+            "password": "Please replace this with your APIX password"
+        },
+        "tokenUrl": "https://services.apixplatform.com/api-sandbox/application/token"
+    },
+    "scoreApi": {
+        "credentials": {
+            "user_name": "Please replace this with your TrustingSocial username",
+            "password": "Please replace this with your TrustingSocial password"
+        },
+        "clientCode": "Please replace this with your TrustingSocial client code",
+        "url": {
+            "base": "https://staging-api.trustingsocial.com",
+            "loginEndpoint": "https://staging-api.trustingsocial.com/authentication/users/login",
+            "createReqEndpoint": "https://staging-api.trustingsocial.com/score_api/otp_sms_requests/create",
+            "verifyReqEndpoint": "https://staging-api.trustingsocial.com/score_api/otp_sms_requests/verify",
+            "scoreReqEndpoint": "https://staging-api.trustingsocial.com/score_api/credit_score_requests/create/with_internal_consent"
+        }
+    },
+    "encDecUtil": {
+        "url": {
+            "base": "https://online.services.go-apix.com",
+            "encryptEndpoint": "https://online.services.go-apix.com/trusting-social/encrypt",
+            "decryptEndpoint": "https://online.services.go-apix.com/trusting-social/decrypt"
+        }
+    },
+    "smartbank": {
+        "accountTypeId": 1000000030,
+        "bankId": 1008,
+        "branchId": 8000308,
+        "partyType": "P",
+        "productId": 1000000012,
+        "createPartyUrl": "https://api.apixplatform.com/sbparty/2.0/party/party/parties",
+        "createAccountUrl": "https://api.apixplatform.com/sbaccount/2.0/account/accounts/accounts",
+        "setOwnersUrl": "https://api.apixplatform.com/sbaccount/2.0/account/accounts/account-owners",
+        "loginUrl": "https://api.apixplatform.com/sbentitlement/3.0/entitlement/entitlement/user-profile-retrieval",
+        "loanUrl": "https://api.apixplatform.com/sblendingV1/2.0/lending/loan",
+        "accountsUrl": "https://api.apixplatform.com/sbaccount/2.0/account/accounts/account-numbers",
+        "getAccountUrl": "https://api.apixplatform.com/sbaccount/2.0/account/accounts/accounts",
+        "emailValidationUrl": "https://api.apixplatform.com/sbentitlement/3.0/entitlement/entitlement/check-email-validity",
+        "createUserLoginUrl": "https://api.apixplatform.com/sbentitlement/3.0/entitlement/entitlement/user-login"
+    },
+    "dashboard": {
+        "accountBasicInfoUrl": "",
+        "accountBalanceInfoUrl": "https://api.apixplatform.com/sbaccount/2.0/account/accounts/account-balance",
+        "accountTransactionsUrl": "https://api.apixplatform.com/sbaccount/2.0/account/accounts/transactions/accounts",
+        "transferTransactionsUrl": "https://api.apixplatform.com/sbaccount/2.0/account/accounts/transactions"
+    },
+    "mambu": {
+        "baseUrl": "https://online.services.go-apix.com/mambu",
+        "branchesUrl": "/branches"
+    },
+    "remitOnline": {
+        "credentials": {
+            "username": "testuser",
+            "password": "%ttt+A84CB75FAWbSFA92DDljFAWbSFfx="
+        },
+        "addTransactionUrl": "https://api.apixplatform.com/ADDTRANSACTION/1.1/avenues/api/ADDTRANSACTION_V1",
+        "getRateUrl": "https://api.apixplatform.com/GateRate_V3/1.4/avenues/api/GETRATE",
+        "statusCheckUrl": "https://api.apixplatform.com/StatusCheck/1.1/avenues/api/STATUSCHECK_V1"
+    },
+    "icf": {
+        "x_api_key": "mTbcIHxQFbUihuwceiZTvHuUbTvLEFxqGLkEHlCQ",
+        "url": "https://api.apixplatform.com/v2/1.0/v2/stix"
+    }
+}

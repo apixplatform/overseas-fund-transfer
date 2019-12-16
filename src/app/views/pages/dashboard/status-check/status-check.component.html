@@ -1,0 +1,31 @@
+<div class="text-center text-dark font-weight-bold pt-2">Recent Remittances</div>
+<ng-container *ngIf="!recentRemittances">
+    <div class="text-center py-5">
+        <img src="./assets/media/img/transfer-money.png" alt="" />
+    </div>
+    <p class="text-center">There are no recent transactions available.</p>
+</ng-container>
+<ng-container *ngIf="recentRemittances">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Ref. No.</th>
+                <th scope="col text-center">Amount</th>
+                <th scope="col text-center">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let remittance of recentRemittances; let i = index">
+                <th scope="row">{{ remittance.tranrefno }}</th>
+                <td class="text-center">{{ remittance.destamount }} {{ remittance.tocurr }}</td>
+                <td class="text-center" *ngIf="remittance.trantype !== 'quick'">
+                    <button *ngIf="!remittance.status" class="btn btn-warning" (click)="checkStatus(remittance.tranrefno, i)">Check</button>
+                    <span *ngIf="remittance.status">
+                        {{ remittance.status }} <a *ngIf="remittance.hasrefresh" href="javascript:;" (click)="checkStatus(remittance.tranrefno, i)" class="text-info"><i class="fas fa-sync-alt"></i></a>
+                    </span>
+                </td>
+                <td class="text-center" *ngIf="remittance.trantype === 'quick'">Transferred</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

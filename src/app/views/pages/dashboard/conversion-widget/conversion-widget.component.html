@@ -1,0 +1,255 @@
+<div class="container text-dark">
+    <div class="row">
+        <div class="col">
+            <form [formGroup]="formDetails" (ngSubmit)="onSubmit(formDetails.value)">
+                <div class="form-group">
+                    <label for="tranamount">
+                        Amount to send
+                        <span class="space-currency currency-flag" [ngClass]="getCurrencyClass('fromcurr')"></span>
+                        {{ formDetails.controls.fromcurr.value ? '(' + formDetails.controls.fromcurr.value + ')' : '' }}
+                    </label>
+                    <div class="input-group">
+                        <input #amountFieldInput type="number" class="form-control" id="tranamount"
+                            (input)="clearConvInfo()" placeholder="Enter amount" formControlName="tranamount">
+                        <div class="input-group-append">
+                            <select class="custom-select" id="fromcurr" formControlName="fromcurr"
+                                (change)="clearAmount()">
+                                <option value="USD">United States Dollars</option>
+                                <option value="EUR">Euro</option>
+                                <option value="GBP">United Kingdom Pounds</option>
+                                <option value="DZD">Algeria Dinars</option>
+                                <option value="ARP">Argentina Pesos</option>
+                                <option value="AUD">Australia Dollars</option>
+                                <option value="ATS">Austria Schillings</option>
+                                <option value="BSD">Bahamas Dollars</option>
+                                <option value="BBD">Barbados Dollars</option>
+                                <option value="BEF">Belgium Francs</option>
+                                <option value="BMD">Bermuda Dollars</option>
+                                <option value="BRR">Brazil Real</option>
+                                <option value="BGL">Bulgaria Lev</option>
+                                <option value="CAD">Canada Dollars</option>
+                                <option value="CLP">Chile Pesos</option>
+                                <option value="CNY">China Yuan Renmimbi</option>
+                                <option value="CYP">Cyprus Pounds</option>
+                                <option value="CSK">Czech Republic Koruna</option>
+                                <option value="DKK">Denmark Kroner</option>
+                                <option value="NLG">Dutch Guilders</option>
+                                <option value="XCD">Eastern Caribbean Dollars</option>
+                                <option value="EGP">Egypt Pounds</option>
+                                <option value="FJD">Fiji Dollars</option>
+                                <option value="FIM">Finland Markka</option>
+                                <option value="FRF">France Francs</option>
+                                <option value="DEM">Germany Deutsche Marks</option>
+                                <option value="XAU">Gold Ounces</option>
+                                <option value="GRD">Greece Drachmas</option>
+                                <option value="HKD">Hong Kong Dollars</option>
+                                <option value="HUF">Hungary Forint</option>
+                                <option value="ISK">Iceland Krona</option>
+                                <option value="INR">India Rupees</option>
+                                <option value="IDR">Indonesia Rupiah</option>
+                                <option value="IEP">Ireland Punt</option>
+                                <option value="ILS">Israel New Shekels</option>
+                                <option value="ITL">Italy Lira</option>
+                                <option value="JMD">Jamaica Dollars</option>
+                                <option value="JPY">Japan Yen</option>
+                                <option value="JOD">Jordan Dinar</option>
+                                <option value="KRW">Korea (South) Won</option>
+                                <option value="LBP">Lebanon Pounds</option>
+                                <option value="LUF">Luxembourg Francs</option>
+                                <option value="MYR">Malaysia Ringgit</option>
+                                <option value="MXP">Mexico Pesos</option>
+                                <option value="NLG">Netherlands Guilders</option>
+                                <option value="NZD">New Zealand Dollars</option>
+                                <option value="NOK">Norway Kroner</option>
+                                <option value="PKR">Pakistan Rupees</option>
+                                <option value="XPD">Palladium Ounces</option>
+                                <option value="PHP">Philippines Pesos</option>
+                                <option value="XPT">Platinum Ounces</option>
+                                <option value="PLZ">Poland Zloty</option>
+                                <option value="PTE">Portugal Escudo</option>
+                                <option value="ROL">Romania Leu</option>
+                                <option value="RUR">Russia Rubles</option>
+                                <option value="SAR">Saudi Arabia Riyal</option>
+                                <option value="XAG">Silver Ounces</option>
+                                <option value="SGD">Singapore Dollars</option>
+                                <option value="SKK">Slovakia Koruna</option>
+                                <option value="ZAR">South Africa Rand</option>
+                                <option value="KRW">South Korea Won</option>
+                                <option value="ESP">Spain Pesetas</option>
+                                <option value="XDR">Special Drawing Right (IMF)</option>
+                                <option value="SDD">Sudan Dinar</option>
+                                <option value="SEK">Sweden Krona</option>
+                                <option value="CHF">Switzerland Francs</option>
+                                <option value="TWD">Taiwan Dollars</option>
+                                <option value="THB">Thailand Baht</option>
+                                <option value="TTD">Trinidad and Tobago Dollars</option>
+                                <option value="TRL">Turkey Lira</option>
+                                <option value="VEB">Venezuela Bolivar</option>
+                                <option value="ZMK">Zambia Kwacha</option>
+                                <option value="EUR">Euro</option>
+                                <option value="XCD">Eastern Caribbean Dollars</option>
+                                <option value="XDR">Special Drawing Right (IMF)</option>
+                                <option value="XAG">Silver Ounces</option>
+                                <option value="XAU">Gold Ounces</option>
+                                <option value="XPD">Palladium Ounces</option>
+                                <option value="XPT">Platinum Ounces</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="btn-group btn-group-toggle container row mx-auto" data-toggle="buttons">
+                        <label class="btn btn-secondary col-6"
+                            [class.active]="formDetails.controls.trantype.value === 'quick'" (click)="clearAmount()">
+                            <input type="radio" id="trantype" formControlName="trantype" value="quick">
+                            <h5>Quick Transfer</h5>
+                            <h6>Instant fund transfer</h6>
+                        </label>
+                        <label class="btn btn-secondary col-6"
+                            [class.active]="formDetails.controls.trantype.value === 'normal'" (click)="clearAmount()">
+                            <input type="radio" id="trantype" formControlName="trantype" value="normal">
+                            <h5>Standard Transfer</h5>
+                            <h6>Fund transfer within two days</h6>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group container text-center" *ngIf="convInfo">
+                    <label class="row">Information about your transaction:</label>
+                    <div class="row">
+                        Conversion:&nbsp;<strong>{{ formDetails.controls.fromcurr.value }} -
+                            {{ formDetails.controls.tocurr.value }}</strong>
+                    </div>
+                    <div class="row">
+                        Transaction Amount:&nbsp;<strong>{{ formDetails.controls.tranamount.value }}
+                            {{ formDetails.controls.fromcurr.value }}</strong>
+                    </div>
+                    <div class="row" *ngIf="convSuccess === true">
+                        Rate:&nbsp;<strong>{{ convInfo.conversionRate }}</strong>
+                    </div>
+                    <div class="row" *ngIf="convSuccess === true">
+                        Fee:&nbsp;<strong>{{ convInfo.fee }} {{ formDetails.controls.fromcurr.value }}</strong>
+                    </div>
+                    <div class="row text-danger" *ngIf="convSuccess === false">
+                        Sorry, the currency combination you have selected is currently not supported.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        Amount received by beneficiary
+                        <span class="space-currency currency-flag" [ngClass]="getCurrencyClass('tocurr')"></span>
+                        {{ formDetails.controls.tocurr.value ? '(' + formDetails.controls.tocurr.value + ')' : '' }}
+                    </label>
+                    <div class="input-group">
+                        <input disabled type="number" class="form-control"
+                            placeholder='Enter "Amount to send" to verify' [value]="convInfo?.destAmount">
+                        <div class="input-group-append">
+                            <select class="custom-select" id="tocurr" formControlName="tocurr" (change)="clearAmount()">
+                                <option value="USD">United States Dollars</option>
+                                <option value="EUR">Euro</option>
+                                <option value="GBP">United Kingdom Pounds</option>
+                                <option value="DZD">Algeria Dinars</option>
+                                <option value="ARP">Argentina Pesos</option>
+                                <option value="AUD">Australia Dollars</option>
+                                <option value="ATS">Austria Schillings</option>
+                                <option value="BSD">Bahamas Dollars</option>
+                                <option value="BBD">Barbados Dollars</option>
+                                <option value="BEF">Belgium Francs</option>
+                                <option value="BMD">Bermuda Dollars</option>
+                                <option value="BRR">Brazil Real</option>
+                                <option value="BGL">Bulgaria Lev</option>
+                                <option value="CAD">Canada Dollars</option>
+                                <option value="CLP">Chile Pesos</option>
+                                <option value="CNY">China Yuan Renmimbi</option>
+                                <option value="CYP">Cyprus Pounds</option>
+                                <option value="CSK">Czech Republic Koruna</option>
+                                <option value="DKK">Denmark Kroner</option>
+                                <option value="NLG">Dutch Guilders</option>
+                                <option value="XCD">Eastern Caribbean Dollars</option>
+                                <option value="EGP">Egypt Pounds</option>
+                                <option value="FJD">Fiji Dollars</option>
+                                <option value="FIM">Finland Markka</option>
+                                <option value="FRF">France Francs</option>
+                                <option value="DEM">Germany Deutsche Marks</option>
+                                <option value="XAU">Gold Ounces</option>
+                                <option value="GRD">Greece Drachmas</option>
+                                <option value="HKD">Hong Kong Dollars</option>
+                                <option value="HUF">Hungary Forint</option>
+                                <option value="ISK">Iceland Krona</option>
+                                <option value="INR">India Rupees</option>
+                                <option value="IDR">Indonesia Rupiah</option>
+                                <option value="IEP">Ireland Punt</option>
+                                <option value="ILS">Israel New Shekels</option>
+                                <option value="ITL">Italy Lira</option>
+                                <option value="JMD">Jamaica Dollars</option>
+                                <option value="JPY">Japan Yen</option>
+                                <option value="JOD">Jordan Dinar</option>
+                                <option value="KRW">Korea (South) Won</option>
+                                <option value="LBP">Lebanon Pounds</option>
+                                <option value="LUF">Luxembourg Francs</option>
+                                <option value="MYR">Malaysia Ringgit</option>
+                                <option value="MXP">Mexico Pesos</option>
+                                <option value="NLG">Netherlands Guilders</option>
+                                <option value="NZD">New Zealand Dollars</option>
+                                <option value="NOK">Norway Kroner</option>
+                                <option value="PKR">Pakistan Rupees</option>
+                                <option value="XPD">Palladium Ounces</option>
+                                <option value="PHP">Philippines Pesos</option>
+                                <option value="XPT">Platinum Ounces</option>
+                                <option value="PLZ">Poland Zloty</option>
+                                <option value="PTE">Portugal Escudo</option>
+                                <option value="ROL">Romania Leu</option>
+                                <option value="RUR">Russia Rubles</option>
+                                <option value="SAR">Saudi Arabia Riyal</option>
+                                <option value="XAG">Silver Ounces</option>
+                                <option value="SGD">Singapore Dollars</option>
+                                <option value="SKK">Slovakia Koruna</option>
+                                <option value="ZAR">South Africa Rand</option>
+                                <option value="KRW">South Korea Won</option>
+                                <option value="ESP">Spain Pesetas</option>
+                                <option value="XDR">Special Drawing Right (IMF)</option>
+                                <option value="SDD">Sudan Dinar</option>
+                                <option value="SEK">Sweden Krona</option>
+                                <option value="CHF">Switzerland Francs</option>
+                                <option value="TWD">Taiwan Dollars</option>
+                                <option value="THB">Thailand Baht</option>
+                                <option value="TTD">Trinidad and Tobago Dollars</option>
+                                <option value="TRL">Turkey Lira</option>
+                                <option value="VEB">Venezuela Bolivar</option>
+                                <option value="ZMK">Zambia Kwacha</option>
+                                <option value="EUR">Euro</option>
+                                <option value="XCD">Eastern Caribbean Dollars</option>
+                                <option value="XDR">Special Drawing Right (IMF)</option>
+                                <option value="XAG">Silver Ounces</option>
+                                <option value="XAU">Gold Ounces</option>
+                                <option value="XPD">Palladium Ounces</option>
+                                <option value="XPT">Platinum Ounces</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="trantype">Transaction Type</label>
+                    <select class="custom-select" id="trantype" formControlName="trantype">
+                        <option disabled value="default">Select Transaction Type</option>
+                        <option value="quick">Quick Remittance - fund transfer is instant</option>
+                        <option value="normal">Standard Remittance - funds will be transferred within two days</option>
+                    </select>
+                </div> -->
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary" [disabled]="!convSuccess"
+                            [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}">Next</button>
+                        <small id="errHelp" *ngIf="!valid" class="form-text text-danger">All fields are mandatory.
+                            Please make sure all details are provided.</small>
+                        <small id="errHelp2" *ngIf="errMsg" class="form-text text-danger">{{ errMsg }}</small>
+                    </div>
+                    <div class="col-md-6 powered-by">
+                        <small>Powered by: </small> <img src="./assets/media/company-logos/remit-online.png"
+                            class="pl-2 logo">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

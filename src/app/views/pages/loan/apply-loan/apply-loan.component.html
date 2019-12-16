@@ -1,0 +1,145 @@
+<div class="mt-5 mb-5 d-flex justify-content-center w-100">
+	<div class="col-md-12">
+		<h1 class="c-white">Welcome to the Maybank Loan Process</h1>
+		<!-- <p class="c-white">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+            Aenean massa. Cum sociis natoque penatibus </p> -->
+	</div>
+</div>
+
+<div class="container clear-top text-dark">
+	<div class="kt-grid kt-wizard-v1 kt-wizard-v1--white">
+		<div class="kt-grid__item">
+			<!--begin: Form Wizard Nav -->
+			<div class="kt-wizard-v1__nav">
+				<div class="kt-wizard-v1__nav-items">
+					<a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-mobile-alt"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Credit Check<br>Initiate
+							</div>
+						</div>
+					</a>
+					<a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-percent"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Credit Check<br>Status
+							</div>
+						</div>
+					</a>
+					<a *ngIf="!loanId" class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step" data-ktwizard-state="current">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-briefcase"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Loan<br>Application
+							</div>
+						</div>
+					</a>
+					<a *ngIf="loanId" class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-briefcase"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Loan<br>Approval
+							</div>
+						</div>
+					</a>
+					<a *ngIf="!loanId" class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-thumbs-up"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Loan<br>Approval
+							</div>
+						</div>
+					</a>
+					<a *ngIf="loanId" class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step" data-ktwizard-state="current">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-thumbs-up"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Loan<br>Approval
+							</div>
+						</div>
+					</a>
+
+				</div>
+			</div>
+			<!--end: Form Wizard Nav -->
+		</div>
+	</div>
+	<div class="row">
+		<div class="col mt-5 px-extra">
+			<form [formGroup]="formDetails" (ngSubmit)="onSubmit(formDetails.value)" *ngIf="!amt">
+				<div class="form-group">
+					<h2 class="font-weight-bold">Please enter the loan amount, in SGD:</h2>
+					<input type="text" class="form-control" id="amt" placeholder="Enter Loan Amount" formControlName="amt">
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<button type="submit" class="btn btn-primary">Submit</button>
+						<small id="errHelp" *ngIf="!valid" class="form-text text-danger">Please enter an amount.</small>
+					</div>
+					<div class="col-md-6 powered-by">
+						<small>Powered by: </small>
+						<img src="./assets/media/company-logos/mambu.png" class="pl-2 logo">
+						<img src="./assets/media/company-logos/smartbank.png" class="pl-2 logo">
+					</div>
+				</div>
+
+			</form>
+			<div class="title" *ngIf="amt">
+				<h3 class="text-description">You are only eligible for SGD {{ getLoamAmt() | number:'1.0-2' }},
+					based on your
+					credit score.</h3><br />
+				<div *ngIf="!loanId">
+					<h5 class="pb-4">Would you like to proceed?</h5>
+					<div class="row">
+						<div class="col-md-6">
+							<div>
+								<button class="btn btn-success mr-2" (click)="applyLoan()" [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}">&nbsp;&nbsp;&nbsp;&nbsp;Yes&nbsp;&nbsp;&nbsp;&nbsp;</button>
+								<button class="btn btn-danger ml-2" [routerLink]="['']">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+							</div>
+							<small id="errHelp2" *ngIf="errMsg" class="form-text text-danger">{{ errMsg }}</small>
+						</div>
+						<div class="col-md-6 powered-by">
+							<small>Powered by: </small>
+							<img src="./assets/media/company-logos/mambu.png" class="pl-2 logo">
+							<img src="./assets/media/company-logos/smartbank.png" class="pl-2 logo">
+						</div>
+					</div>
+
+				</div>
+				<div *ngIf="loanId">
+                    <h5 class="pb-2">Loan Approved and Credited</h5><br>
+                    <div class="pb-2"><strong>Loan ID: </strong><span *ngIf="loanId" class="account-Info" [innerHTML]="loanId"></span></div> <br />
+                    <div class="pb-2"><strong>Account ID: </strong><span class="account-Info">{{ accountId }}</span></div> <br />
+                    <div class="pb-2"><strong>Amount: </strong><span class="account-Info">{{ (amt * scoreMult) | number:'1.0-2' }}</span></div> <br />
+					
+					<div class="row">
+						<div class="col-md-6">
+							<a mat-raised-button routerLink="['/dashboard']" color="primary">Back to Dashboard</a>
+						</div>
+						<div class="col-md-6 powered-by">
+							<small>Powered by: </small>
+							<img src="./assets/media/company-logos/mambu.png" class="pl-2 logo">
+							<img src="./assets/media/company-logos/smartbank.png" class="pl-2 logo">
+						</div>
+					</div>
+
+				</div>
+				<br />
+			</div>
+		</div>
+	</div>
+</div>

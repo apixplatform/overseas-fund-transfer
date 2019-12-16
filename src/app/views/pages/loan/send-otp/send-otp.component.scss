@@ -1,0 +1,17 @@
+@import "sass/pages/wizard/wizard-1";
+
+.clear-top {
+    margin-top: 15em;
+    @media(max-width:767px){
+        margin-top: 12em;
+    }
+}
+
+.px-extra {
+    padding-left: 10em;
+    padding-right: 10em;
+    @media(max-width:767px){
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

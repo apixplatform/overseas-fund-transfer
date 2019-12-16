@@ -1,0 +1,98 @@
+<div class="mt-5 mb-5 d-flex justify-content-center w-100">
+	<div class="col-md-12">
+		<h1 class="c-white">Welcome to the Maybank Loan Process</h1>
+		<!-- <p class="c-white">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+            Aenean massa. Cum sociis natoque penatibus </p> -->
+		<div class="button-row">
+			<a mat-raised-button [routerLink]="['/dashboard']" color="primary">HOME</a>
+		</div>
+	</div>
+</div>
+
+<div class="container clear-top text-dark">
+	<div class="kt-grid kt-wizard-v1 kt-wizard-v1--white">
+		<div class="kt-grid__item">
+			<!--begin: Form Wizard Nav -->
+			<div class="kt-wizard-v1__nav">
+				<div class="kt-wizard-v1__nav-items">
+					<a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step" data-ktwizard-state="current">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-mobile-alt"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Credit Check<br>Initiate
+							</div>
+						</div>
+					</a>
+					<a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-percent"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Credit Check<br>Status
+							</div>
+						</div>
+					</a>
+					<a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-briefcase"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Loan<br>Application
+							</div>
+						</div>
+					</a>
+					<a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+						<div class="kt-wizard-v1__nav-body">
+							<div class="kt-wizard-v1__nav-icon">
+								<i class="fas fa-thumbs-up"></i>
+							</div>
+							<div class="kt-wizard-v1__nav-label">
+								Loan<br>Approval
+							</div>
+						</div>
+					</a>
+
+				</div>
+			</div>
+			<!--end: Form Wizard Nav -->
+		</div>
+	</div>
+	<div class="row">
+		<div class="col mt-5 px-extra">
+			<h2 class="font-weight-bold">We'll need to verify your credit rating to check your eligibility.</h2>
+			<h5>To begin, please enter your phone number below:</h5>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col mt-5 px-extra">
+			<form [formGroup]="formDetails" (ngSubmit)="onSubmit(formDetails.value)">
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" id="name" placeholder="Enter name" formControlName="name">
+				</div>
+				<div class="form-group">
+					<label for="msisdn">Telephone number</label>
+					<input type="text" class="form-control" id="msisdn" placeholder="Enter phone number" formControlName="msisdn">
+					<small id="tpnHelp" class="form-text text-muted">Please be sure to enter an SMS-capable
+						number. Ex: 917025976692</small>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<button type="submit" class="btn btn-primary" [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}">Submit</button>
+						<small id="errHelp" *ngIf="!valid" class="form-text text-danger">Please fill in both form
+							fields.</small>
+						<small id="errHelp2" *ngIf="errMsg" class="form-text text-danger">{{ errMsg }}</small>
+                    </div>
+                    <div class="col-md-6 powered-by">
+                        <small>Powered by: </small> <img src="./assets/media/company-logos/trusting-social.png" class="pl-2 logo">
+                    </div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

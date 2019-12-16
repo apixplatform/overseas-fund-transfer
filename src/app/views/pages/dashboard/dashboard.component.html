@@ -1,0 +1,460 @@
+<div class="row">
+
+	<div class="mt-5 mb-5 d-md-flex justify-content-center w-100">
+		<div class="col-md-6 mb-4">
+			<h1 class="c-white">Welcome to your Dashboard.</h1>
+			<p class="c-white">View key information about your activities here.</p>
+			<div class="button-row">
+				<!-- <a mat-raised-button routerLink="." color="primary">HOME</a> -->
+			</div>
+			<div class="powered-by" style="text-align: left; color: #FFF;">
+				<small>Powered by: </small>
+				<!-- <img src="./assets/media/company-logos/mambu.png" class="pl-2 logo"> -->
+				<img src="./assets/media/company-logos/smartbank.png" class="pl-2 logo">
+			</div>
+		</div>
+		<div class="col-md-4 mb-4">
+			<div class="row account-detail-box">
+				<div class="col-md-12">
+					<ul class="list-group">
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<h5 class="">Account Holder :</h5>
+							<h5 class="text-dark">{{accountBasicInfo?.accountName}}</h5>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<h5 class="">Account ID :</h5>
+							<h5 class="text-dark">{{accountBasicInfo?.accountId}}</h5>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<h5 class="">Account Balance :</h5>
+							<h5 class="text-dark">SGD {{accountBalance?.balance | number:'1.0-2'}}</h5>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-4">
+		<div class="row row-full-height  custom-bottm-card">
+			<div class="col-sm-12 col-md-12 col-lg-12">
+				<kt-portlet [class]="'kt-portlet--height-fluid'">
+					<kt-portlet-header [title]="'My Account Summary'">
+						<ng-container ktPortletTools>
+							<div class="">
+								<p>As of {{ dateString }}</p>
+							</div>
+						</ng-container>
+					</kt-portlet-header>
+					<kt-portlet-body>
+						<div class="kt-widget4">
+							<div class="kt-widget4__item">
+								<a class="kt-widget4__title" href="">Current Balance</a>
+								<span class="kt-widget4__number kt-font-info">${{accountBalance?.balance | number:'1.0-2'}}</span>
+							</div>
+							<div class="kt-widget4__item">
+								<a class="kt-widget4__title" href="">Availale Balance</a>
+								<span class="kt-widget4__number kt-font-info">${{accountBalance?.balance | number:'1.0-2'}}</span>
+							</div>
+							<div class="kt-widget4__item">
+								<a class="kt-widget4__title" href="">Arranged Overdraft</a>
+								<span class="kt-widget4__number kt-font-info">$0.00</span>
+							</div>
+						</div>
+						<!-- <kt-widget4 [data]="widget4_6">
+							<ng-template #actionTemplate let-item="item">
+								<span class="kt-widget4__number" [ngClass]="item.valueColor">{{item.value}}</span>
+							</ng-template>
+						</kt-widget4> -->
+					</kt-portlet-body>
+					<!-- <kt-portlet-body>
+						<div class="kt-widget12">
+							<div class="kt-widget12__content">
+								<div class="kt-widget12__item">
+									<div class="kt-widget12__info">
+										<span class="kt-widget12__desc">Current Balance</span>
+										<span class="kt-widget12__value">$15,000.00</span>
+									</div>
+									<div class="kt-widget12__info">
+										<span class="kt-widget12__desc">Available Balance</span>
+										<span class="kt-widget12__value">$14,000.00</span>
+									</div>
+								</div>
+								<div class="kt-widget12__item">
+									<div class="kt-widget12__info">
+										<span class="kt-widget12__desc">Arranged Overdraft</span>
+										<span class="kt-widget12__value">$60.00</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</kt-portlet-body> -->
+				</kt-portlet>
+
+				<!-- <div class="kt-space-20"></div>
+
+				<kt-portlet [class]="'kt-portlet--height-fluid-half kt-portlet--border-bottom-brand'">
+					<kt-portlet-body [class]="'kt-portlet__body--fluid'">
+						<kt-widget26 [value]="640" [desc]="'Completed Transactions'" [options]="chartOptions2"></kt-widget26>
+					</kt-portlet-body>
+				</kt-portlet> -->
+			</div>
+
+			<div class="col-sm-12 col-md-12 col-lg-12">
+				<kt-portlet [class]="'kt-portlet--height-fluid'">
+					<kt-portlet-header [title]="'My Loan'"  class="pt-4">
+						<!-- <ng-container ktPortletTools>
+							<div class="">
+								<p>Your loan related note goes…</p>
+							</div>
+						</ng-container> -->
+					</kt-portlet-header>
+					<kt-portlet-body>
+						<p><strong>Great News.</strong>You are highly likely to be accepted for a <strong>loan up to
+								$15,000.</strong> 3.3% APR representative on loans between $7,000 and $15,000. Subjected
+							to credit status. T&Cs apply.</p>
+						<div class="form-group" style="text-align: center;">
+							<button disabled class="btn btn-primary" [routerLink]="['/loan']" data-toggle="tooltip" data-placement="top" title="This feature has been temporarily disabled.">
+								<!-- <img src="./assets/media/company-logos/mambu.png" class="pl-2 button-logo"> -->
+								APPLY NOW | <img src="./assets/media/company-logos/smartbank.png" class="pl-2 button-logo">
+							</button>
+						</div>
+					</kt-portlet-body>
+				</kt-portlet>
+
+				<!-- <div class="kt-space-20"></div>
+
+				<kt-portlet [class]="'kt-portlet--height-fluid-half kt-portlet--border-bottom-brand'">
+					<kt-portlet-body [class]="'kt-portlet__body--fluid'">
+						<kt-widget26 [value]="'4.4M$'" [desc]="'Paid Comissions'" [options]="chartOptions4"></kt-widget26>
+					</kt-portlet-body>
+				</kt-portlet> -->
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-8">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'My Weekly Account Balance'">
+				<!-- <ng-container ktPortletTools>
+					<kt-context-menu2></kt-context-menu2>
+				</ng-container> -->
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<kt-widget14 [title]="'Account Balance'" [desc]="'Your recent transaction balance summary'" #widgetComp></kt-widget14>
+				<!-- <kt-widget12></kt-widget12> -->
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div>
+
+
+<!-- <kt-portlet>
+	<kt-portlet-body [class]="'kt-portlet__body--fit'">
+		<div class="row row-no-padding row-col-separator-xl">
+			<div class="col-xl-4">
+				<kt-widget1></kt-widget1>
+			</div>
+			<div class="col-xl-4">
+				<kt-widget14 [title]="'Daily Sales'" [desc]="'Check out each collumn for more details'"></kt-widget14>
+			</div>
+			<div class="col-xl-4">
+				<kt-widget14 [title]="'Revenue Change'" [desc]="'Revenue change breakdown by cities'"></kt-widget14>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet> -->
+
+
+<!-- <div class="row">
+	<div class="col-xl-4">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Download Files'">
+				<ng-container ktPortletTools>
+					<kt-context-menu2></kt-context-menu2>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<kt-widget4 [data]="widget4_1">
+					<ng-template #actionTemplate let-item="item">
+						<div class="kt-widget4__tools">
+							<a href="javascript:;" class="btn btn-clean btn-icon btn-sm">
+								<i class="flaticon2-download-symbol-of-down-arrow-in-a-rectangle"></i>
+							</a>
+						</div>
+					</ng-template>
+				</kt-widget4>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-xl-4">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'New Users'">
+				<ng-container ktPortletTools>
+					<kt-context-menu2></kt-context-menu2>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<kt-widget4 [data]="widget4_2">
+					<ng-template #actionTemplate let-item="item">
+						<a href="javascript:;" class="btn btn-sm" [ngClass]="item.buttonClass">Follow</a>
+					</ng-template>
+				</kt-widget4>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-xl-4">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Latest Updates'">
+				<ng-container ktPortletTools>
+					<kt-context-menu2></kt-context-menu2>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<kt-widget4 [data]="widget4_3">
+					<ng-template #actionTemplate let-item="item">
+						<span class="kt-widget4__number" [ngClass]="item.valueColor">{{item.value}}</span>
+					</ng-template>
+				</kt-widget4>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div> -->
+
+
+<div class="row">
+	<div class="col-xl-8">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'My Recent Transactions'">
+				<!-- <ng-container ktPortletTools>
+					<kt-context-menu></kt-context-menu>
+				</ng-container> -->
+			</kt-portlet-header>
+			<kt-portlet-body [class]="'kt-portlet__body--fit'">
+				<kt-data-table #transactionTable></kt-data-table>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-xl-4">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Recent Activities'">
+				<!-- <ng-container ktPortletTools>
+					<kt-context-menu2></kt-context-menu2>
+				</ng-container> -->
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<kt-timeline2></kt-timeline2>
+			</kt-portlet-body>
+		</kt-portlet>
+		<!-- <kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Authors Profit'">
+				<ng-container ktPortletTools>
+					<kt-context-menu2></kt-context-menu2>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<kt-widget4 [data]="widget4_4">
+					<ng-template #actionTemplate let-item="item">
+						<span class="kt-widget4__number" [ngClass]="item.valueColor">{{item.value}}</span>
+					</ng-template>
+				</kt-widget4>
+			</kt-portlet-body>
+		</kt-portlet> -->
+	</div>
+</div>
+
+
+<!-- <div class="row">
+	<div class="col-xl-8">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Best Sellers'">
+				<ng-container ktPortletTools>
+					<kt-context-menu2></kt-context-menu2>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<kt-widget5></kt-widget5>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-xl-4">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Recent Activities'">
+				<ng-container ktPortletTools>
+					<kt-context-menu2></kt-context-menu2>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<kt-timeline2></kt-timeline2>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div> -->
+
+<div class="row custom-bottm-card">
+	<div class="col-xl-8">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Overseas Transfer'" class="pt-4">
+				<ng-container ktPortletTools>
+					<div class="">
+						<p>Borderless transactions anywhere in the world</p>
+					</div>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<div class="row">
+					<kt-conversion-widget class="col-7 border-right"></kt-conversion-widget>
+					<div class="col-5">
+						<div class="border-bottom my-auto">
+							<h4 class="font-weight-bold text-dark text-center pt-3">Truly Borderless Fund Transfer</h4>
+							<h6 class="text-dark text-center pb-3">Move money anywhere in the world.</h6>
+						</div>
+						<div class="my-auto">
+							<kt-status-check (refresh)="fetchAccountBalance($event)"></kt-status-check>
+						</div>
+					</div>
+				</div>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-xl-4">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Quick Local Money Transfer'" class="pt-4">
+				<ng-container ktPortletTools>
+					<div class="">
+						<p>Transfer funds from one Maybank account to another</p>
+					</div>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<div class="kt-form__section kt-form__section--first">
+					<div class="kt-wizard-v1__form">
+						<span class="text-danger " *ngIf="onSuccessTransfer!=undefined && !onSuccessTransfer">
+							Your requested transfer to Account #{{dashboardForm.moneyTransfer.to}} was unsuccessful.<br /><br />
+						</span>
+						<span class="text-success " *ngIf="onSuccessTransfer">
+							{{dashboardForm.moneyTransfer.amount}} SGD has been transferred to Account
+							#{{dashboardForm.moneyTransfer.to}} successfully.<br /><br />
+						</span>
+						<div class="form-group">
+							<div class="form-group">
+								<label>From</label>
+								<input type="text" class="form-control" name="locaddress1" placeholder="From" value="" [(ngModel)]="dashboardForm.moneyTransfer.from" disabled>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-group">
+								<label>To</label>
+								<input type="text" class="form-control" name="locaddress1" placeholder="To" value="" [(ngModel)]="dashboardForm.moneyTransfer.to">
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Amount (SGD)</label>
+							<input type="number" class="form-control" name="locaddress1" placeholder="Amount" value="" [(ngModel)]="dashboardForm.moneyTransfer.amount">
+						</div>
+						<div class="kt-form__actions">
+							<button (click)="makeTransfer()" [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loadingTransfer}" [disabled]="dashboardForm.moneyTransfer.to=='' || dashboardForm.moneyTransfer.from=='' || dashboardForm.moneyTransfer.amount==null || dashboardForm.moneyTransfer.amount==''" class="btn btn-outline-primary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u mr-3">
+								SEND | <img src="./assets/media/company-logos/smartbank.png" class="pl-2 button-logo">
+							</button>
+							<button (click)="clearTransferForm()" [disabled]="dashboardForm.moneyTransfer.to=='' && dashboardForm.moneyTransfer.from=='' && (dashboardForm.moneyTransfer.amount==null || dashboardForm.moneyTransfer.amount=='')" class="btn btn-outline-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u mr-3">
+								CLEAR
+							</button>
+						</div>
+					</div>
+				</div>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+</div>
+
+
+<div class="row custom-bottm-card">
+	<div class="col-sm-12 col-md-12 col-lg-3">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Bank Statements'">
+				<ng-container ktPortletTools>
+					<div class="">
+						<p>Your most recent statements</p>
+					</div>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+
+				<kt-widget4 [data]="widget4_5" class="pt-4">
+					<ng-template #actionTemplate let-item="item">
+						<div class="kt-widget4__tools">
+							<a href="javascript:;" class="btn btn-clean btn-icon btn-sm">
+								<i class="flaticon2-download-symbol-of-down-arrow-in-a-rectangle"></i>
+							</a>
+						</div>
+					</ng-template>
+				</kt-widget4>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-sm-12 col-md-12 col-lg-3">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Find a mortgage for you'" class="pt-4">
+				<ng-container ktPortletTools>
+					<div class="">
+						<!-- <p>Lorem ipsum dolor sit amet</p> -->
+					</div>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<div class="text-center pt-4 pb-5">
+					<img src="./assets/media/img/Shape-2.png" alt="" />
+				</div>
+				<p>Lets us take the hassle out of finding an attractive rate. Financial eligibility criteria apply.</p>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-sm-12 col-md-12 col-lg-3">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Upgrade your Secure Key'" class="pt-4">
+				<ng-container ktPortletTools>
+					<div class="">
+						<!-- <p>Lorem ipsum dolor sit amet</p> -->
+					</div>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<div class="text-center pt-4 pb-5">
+					<img src="./assets/media/img/key.PNG" alt="" />
+				</div>
+				<p>Upgrade to our Digital Secure Key for faster and more convenient access to your digital banking.</p>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+	<div class="col-sm-12 col-md-12 col-lg-3">
+		<kt-portlet [class]="'kt-portlet--height-fluid'">
+			<kt-portlet-header [title]="'Branches'">
+				<ng-container ktPortletTools>
+					<div class="">
+						<p>Visit our branches for any queries</p>
+					</div>
+				</ng-container>
+			</kt-portlet-header>
+			<kt-portlet-body>
+				<kt-widget4 [data]="widget4_2">
+					<!-- <ng-template #actionTemplate let-item="item">
+										<a href="javascript:;" class="btn btn-sm" [ngClass]="item.buttonClass">View</a>
+									</ng-template> -->
+				</kt-widget4>
+			</kt-portlet-body>
+		</kt-portlet>
+	</div>
+
+</div>
+
+<!--
+<kt-portlet>
+	<kt-portlet-header>
+		<ng-container ktPortletTitle>
+		</ng-container>
+		<ng-container ktPortletTools>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body></kt-portlet-body>
+	<kt-portlet-footer></kt-portlet-footer>
+</kt-portlet>
+-->

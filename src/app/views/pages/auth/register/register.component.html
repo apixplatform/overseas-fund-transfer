@@ -1,0 +1,119 @@
+<!--begin::Body-->
+<div class="kt-login__body">
+	<!--begin::Signin-->
+	<div class="kt-login__form">
+		<div class="kt-login__title">
+			<h3>{{ 'AUTH.REGISTER.TITLE' | translate }}</h3>
+		</div>
+
+		<kt-auth-notice *ngIf="!accountCreationSuccess"></kt-auth-notice>
+
+		<h4 *ngIf="accountCreationSuccess">
+			<br /><br /><br />
+			Your account was created successfully!<br />
+			<a class="btn-link" routerLink="/dashboard">Go to your dashboard</a>.
+		</h4>
+
+		<form class="kt-login__form kt-form" [formGroup]="registerForm" autocomplete="off"
+			*ngIf="!accountCreationSuccess">
+			<div class="form-group">
+				<mat-form-field>
+					<mat-label>Account Holder's Name</mat-label>
+					<input matInput type="text" placeholder="Name" formControlName="fullname" />
+					<mat-error *ngIf="isControlHasError('fullname','required')">
+						<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('fullname','minlength')">
+						<strong>{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }} 3</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('fullname','maxlength')">
+						<strong>{{ 'AUTH.VALIDATION.MAX_LENGTH_FIELD' | translate }} 100</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group">
+				<mat-form-field>
+					<mat-label>{{ 'AUTH.INPUT.EMAIL' | translate }}</mat-label>
+					<input matInput #emailFieldInput type="email" placeholder="{{ 'AUTH.INPUT.EMAIL' | translate }}"
+						formControlName="email" autocomplete="off" />
+					<mat-error *ngIf="isControlHasError('email','required')">
+						<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('email','email')">
+						<strong>{{ 'AUTH.VALIDATION.INVALID_FIELD' | translate }}</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('email','minlength')">
+						<strong>{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }} 3</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('email','maxlength')">
+						<strong>{{ 'AUTH.VALIDATION.MAX_LENGTH_FIELD' | translate }} 320</strong>
+					</mat-error>
+					<span class="mat-error text-success pt-3 mat-form-field-subscript-wrapper" *ngIf="validEmail">
+						<strong>Email is valid</strong>
+					</span>
+					<span class="mat-error pt-3 mat-form-field-subscript-wrapper" *ngIf="invalidEmail">
+						<strong>This email is invalid.</strong>
+					</span>
+					<span class="mat-error pt-3 mat-form-field-subscript-wrapper" *ngIf="emailBlacklisted">
+						<strong>This email has been blacklisted.</strong>
+					</span>
+				</mat-form-field>
+			</div>
+			<div class="form-group">
+				<mat-form-field>
+					<mat-label>{{ 'AUTH.INPUT.PASSWORD' | translate }}</mat-label>
+					<input matInput type="password" placeholder="{{ 'AUTH.INPUT.PASSWORD' | translate }}"
+						formControlName="password" autocomplete="off" />
+					<mat-error *ngIf="isControlHasError('password','required')">
+						<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('password','minlength')">
+						<strong>{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }} 3</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('password','maxlength')">
+						<strong>{{ 'AUTH.VALIDATION.MAX_LENGTH_FIELD' | translate }} 100</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group">
+				<mat-form-field>
+					<mat-label>{{ 'AUTH.INPUT.CONFIRM_PASSWORD' | translate }}</mat-label>
+					<input matInput type="password" placeholder="{{ 'AUTH.INPUT.CONFIRM_PASSWORD' | translate }}"
+						formControlName="confirmPassword" autocomplete="off" />
+					<mat-error *ngIf="isControlHasError('confirmPassword','required')">
+						<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('confirmPassword','minlength')">
+						<strong>{{ 'AUTH.VALIDATION.MIN_LENGTH_FIELD' | translate }} 3</strong>
+					</mat-error>
+					<mat-error *ngIf="isControlHasError('confirmPassword','maxlength')">
+						<strong>{{ 'AUTH.VALIDATION.MAX_LENGTH_FIELD' | translate }} 100</strong>
+					</mat-error>
+					<mat-error
+						*ngIf="registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').errors.ConfirmPassword">
+						<strong>The two passwords entered do not match.</strong>
+					</mat-error>
+				</mat-form-field>
+			</div>
+			<div class="form-group">
+				<mat-checkbox name="agree" formControlName="agree">
+					I agree to the <a href="javascript:;">terms & conditions</a>
+				</mat-checkbox>
+			</div>
+
+			<!--begin::Action-->
+			<div class="kt-login__actions">
+				<!-- <a href="javascript:;" routerLink="/auth/forgot-password" class="kt-link kt-login__link-forgot">
+					{{ 'AUTH.GENERAL.FORGOT_BUTTON' | translate }}
+				</a> -->
+				<button routerLink="/auth/login" [disabled]="loading" id="kt_login_signup_cancel"
+					class="btn btn-secondary btn-elevate kt-login__btn-secondary">{{ 'AUTH.GENERAL.BACK_BUTTON' | translate }}</button>
+				<button (click)="submit()" [disabled]="!validEmail" id="kt_login_signin_submit"
+					class="btn btn-primary btn-elevate kt-login__btn-primary"
+					[ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}">{{ 'AUTH.GENERAL.SUBMIT_BUTTON' | translate }}</button>
+			</div>
+			<strong class="text-danger" *ngIf="showErrorMsg">Account Creation failed.</strong>
+			<!--end::Action-->
+		</form>
+	</div>
+</div>
