@@ -8,14 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PartialsModule } from '../../partials/partials.module';
 import { CoreModule } from '../../../core/core.module';
 
-// Core Module
-import { SendOtpComponent } from './send-otp/send-otp.component';
-import { CryptoService } from './_services/crypto/crypto.service';
-import { ScoringService } from './_services/scoring/scoring.service';
-import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
-
 import {MatButtonModule} from '@angular/material/button';
-import { ApplyLoanComponent } from './apply-loan/apply-loan.component';
 
 @NgModule({
   imports: [
@@ -25,26 +18,9 @@ import { ApplyLoanComponent } from './apply-loan/apply-loan.component';
     CoreModule,
     MatButtonModule,
     ReactiveFormsModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: SendOtpComponent
-      },
-      {
-        path: 'verify',
-        component: VerifyOtpComponent
-      },
-      {
-        path: 'apply',
-        component: ApplyLoanComponent
-      },
-    ]),
+    RouterModule.forChild([]),
   ],
-  providers: [CryptoService, ScoringService],
-  declarations: [
-    SendOtpComponent,
-    VerifyOtpComponent,
-    ApplyLoanComponent
-  ]
+  providers: [],
+  declarations: []
 })
 export class LoanModule { }

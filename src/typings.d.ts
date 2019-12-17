@@ -17,9 +17,10 @@ declare var Chart: any;
 
 declare module 'api-config.json' {
 	const apix: any;
-	const scoreApi: any;
-	const encDecUtil: any;
 	const smartbank: any;
 	const dashboard: any;
-    export {apix, scoreApi, encDecUtil, smartbank, dashboard};
+	const mambu: any;
+	const remitOnline: any;
+	const icf: any;
+    export {apix, smartbank, dashboard, mambu, remitOnline, icf};
 }

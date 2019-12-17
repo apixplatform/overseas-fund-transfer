@@ -13,27 +13,6 @@ data:
             },
             "tokenUrl": "https://services.apixplatform.com/api-sandbox/application/token"
         },
-        "scoreApi": {
-            "credentials": {
-                "user_name": "Please replace this with your TrustingSocial username",
-                "password": "Please replace this with your TrustingSocial password"
-            },
-            "clientCode": "Please replace this with your TrustingSocial client code",
-            "url": {
-                "base": "https://staging-api.trustingsocial.com",
-                "loginEndpoint": "https://staging-api.trustingsocial.com/authentication/users/login",
-                "createReqEndpoint": "https://staging-api.trustingsocial.com/score_api/otp_sms_requests/create",
-                "verifyReqEndpoint": "https://staging-api.trustingsocial.com/score_api/otp_sms_requests/verify",
-                "scoreReqEndpoint": "https://staging-api.trustingsocial.com/score_api/credit_score_requests/create/with_internal_consent"
-            }
-        },
-        "encDecUtil": {
-            "url": {
-                "base": "https://online.services.go-apix.com",
-                "encryptEndpoint": "https://online.services.go-apix.com/trusting-social/encrypt",
-                "decryptEndpoint": "https://online.services.go-apix.com/trusting-social/decrypt"
-            }
-        },
         "smartbank": {
             "accountTypeId": 1000000030,
             "bankId": 1008,
