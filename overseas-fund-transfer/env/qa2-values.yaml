@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: 368696334230.dkr.ecr.ap-south-1.amazonaws.com/go-bank-online-banking-frontend
+  repository: github.com/apixplatform/overseas-fund-transfer
   tag: 1.0.2
   pullPolicy: Always
 
@@ -17,7 +17,7 @@ ingress:
   enabled: true
   path: /
   hosts:
-    - online.qa.go-apix.com
+    - online.qa2.go-apix.com
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

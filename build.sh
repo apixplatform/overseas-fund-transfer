@@ -1,4 +1,4 @@
-export APP_NAME=go-bank-online-banking-frontend
+export APP_NAME=overseas-fund-transfer
 export APP_VERSION=1.0.2
 export AWS_REGION=ap-south-1
 export NAMESPACE=go-apix

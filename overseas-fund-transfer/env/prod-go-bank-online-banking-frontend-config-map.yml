@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: go-bank-online-banking-frontend-config-map
+  name: overseas-fund-transfer-config-map
   namespace: go-apix
 data:
   api-config.json: |

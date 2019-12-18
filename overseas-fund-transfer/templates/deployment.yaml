@@ -63,5 +63,5 @@ spec:
       volumes:
         - name: assets-config
           configMap:
-            name: go-bank-online-banking-frontend-config-map
+            name: overseas-fund-transfer-config-map
             defaultMode: 0555
