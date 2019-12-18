@@ -69,15 +69,7 @@ To configure the use case,
         "userName": "Replace this with your APIX username",
         "password": "Replace this with your APIX password"
 
-3. Provide the credentials used by the TrustingSocial API.
-
-        "credentials": {
-	        "user_name": "Replace with your TrustingSocial API username",
-	        "password": "Replace with your TrustingSocial API password"
-        },
-        "clientCode": "Replace with your TrustingSocial API client code",
-
-5. From the main menu, click `File` > `Save`.
+3. From the main menu, click `File` > `Save`.
 
 Now the development server is up and running with correct configurations. To open the use case website follow the below instructions.
 
