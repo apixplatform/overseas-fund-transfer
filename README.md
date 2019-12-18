@@ -130,3 +130,15 @@ Now the development server is up and running with correct configurations. To ope
 	* If your transfer was a Standard Transfer, you will instead see a button under the `Status` column, labeled `Check`.
 	* Click this button to query the `RemitOnline Status Check API` about the status of your transaction. *If the status shows as* **Compliance Check**, *or* **Bank Processing**, *please try again by clicking the refresh icon.* If the status shows as **Rejected**, or **Failed**, then your transaction has not been successful and your balance will not be modified. If the status shows as **Successful**, then your transaction has succeeded, and your balance will be debited shortly.
 	* Scroll up to the `My Recent Transactions` table to see your latest transaction, which should be the remittance transaction, and verify that your balance has been reduced by the entered amount.
+
+#### Note:
+
+If you are simply creating a project from scratch, or cloning an external project to work on the IDE, as opposed to cloning this project, you need to make a simple modification to your project's `package.json` to ensure that it can be run in the APIX Platform IDE.
+
+Modify your `npm start` script within your project's `package.json`, including the following flags:
+
+```javascript
+"start": "ng serve --host 0.0.0.0 --disableHostCheck true",
+```
+
+This will allow you to run the project via the IDE.
